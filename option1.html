@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html> <!-- I made a map showing markers with information of landmarks in Zurich, Switzerland.
+			I also added a drop down bar with different map styles (mostly made by Google) the user can choose. 
+			The default is "Swiss" - a style I created by editing certain features from the "silver" style. -->
+  <head>
+    <title>Zurich Landmarks (option one)</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyATtK2qLuQxln0V7-kx7_SrRJUQ3XcBEh4&callback=initMap&libraries=&v=weekly"
+      defer
+    ></script>
+    <style type="text/css">
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+
+      /* Makes the sample page fill the window. */
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+	  
+	        .map-control {
+        background-color: #fff;
+        border: 1px solid #ccc;
+        box-shadow: 0 2px 2px rgba(33, 33, 33, 0.4);
+        font-family: "Roboto", "sans-serif";
+        margin: 10px;
+        /* Hide the control initially, to prevent it from appearing
+           before the map loads. */
+        display: none;
+      }
+
+      /* Display the control once it is inside the map. */
+      #map .map-control {
+        display: block;
+      }
+
+      .selector-control {
+        font-size: 14px;
+        line-height: 30px;
+        padding-left: 5px;
+        padding-right: 5px;
+      }
+    </style>
+    <script>
+      // This example displays a marker at the center of Australia.
+      // When the user clicks the marker, an info window opens.
+      function initMap() { 
+        const grossmunster = { lat: 47.37009907805491, lng: 8.544015636726325 };
+        const map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 14,
+          center: grossmunster,
+		  mapTypeControl: false,
+        });
+        const contentString1 =
+          '<div id="content">' +
+          '<div id="siteNotice">' +
+          "</div>" +
+          '<h1 id="firstHeading" class="firstHeading">Grossmünster</h1>' +
+          '<div id="bodyContent">' +
+          "<p>Iconic twin-towered Romanesque cathedral, where 1500s religious reformer Huldrych Zwingli preached.</p>" +
+          "<p>Source: Google Maps</p>" +
+		  "</div>" +
+          "</div>";
+        const infowindow1 = new google.maps.InfoWindow({
+          content: contentString1,
+        });
+        const marker1 = new google.maps.Marker({
+          position: grossmunster,
+          map,
+          title: "Grossmünster",
+		  animation: google.maps.Animation.DROP,
+        });
+        marker1.addListener("click", () => {
+          infowindow1.open(map, marker1);
+        });
+		
+		const fraumunster = { lat: 47.36978351754966, lng: 8.541224848947625 };
+        const contentString2 =
+          '<div id="content">' +
+          '<div id="siteNotice">' +
+          "</div>" +
+          '<h1 id="firstHeading" class="firstHeading">Fraumünster Church</h1>' +
+          '<div id="bodyContent">' +
+          "<p>Elegant church with a delicate, copper-topped spire & stained glass by Marc Chagall.</p>" +
+          "<p>Source: Google Maps</p>" +
+		  "</div>" +
+          "</div>";
+        const infowindow2 = new google.maps.InfoWindow({
+          content: contentString2,
+        });
+        const marker2 = new google.maps.Marker({
+          position: fraumunster,
+          map,
+          title: "Fraumünster Church",
+		  animation: google.maps.Animation.DROP,
+        });
+        marker2.addListener("click", () => {
+          infowindow2.open(map, marker2);
+        });
+		 
+		const SwissNationalMuseum = { lat: 47.379068969075, lng: 8.540543411701213 };
+        const contentString3 =
+          '<div id="content">' +
+          '<div id="siteNotice">' +
+          "</div>" +
+          '<h1 id="firstHeading" class="firstHeading">Swiss National Museum</h1>' +
+          '<div id="bodyContent">' +
+          "<p>Displays on aspects of Switzerland's history, plus handicrafts, homewares & an armory tower.</p>" +
+          "<p>Source: Google Maps</p>" +
+		  "</div>" +
+          "</div>";
+        const infowindow3 = new google.maps.InfoWindow({
+          content: contentString3,
+        });
+        const marker3 = new google.maps.Marker({
+          position: SwissNationalMuseum,
+          map,
+          title: "Swiss National Museum",
+		  animation: google.maps.Animation.DROP,
+        });
+        marker3.addListener("click", () => {
+          infowindow3.open(map, marker3);
+        });
+		
+		const ZürichOperaHouse = { lat: 47.365158902706376, lng: 8.546000941367991 };
+        const contentString4 =
+          '<div id="content">' +
+          '<div id="siteNotice">' +
+          "</div>" +
+          '<h1 id="firstHeading" class="firstHeading">Zürich Opera House</h1>' +
+          '<div id="bodyContent">' +
+          "<p>Decorative performance venue, opened 1834, for classic & contemporary opera & ballet, plus tours.</p>" +
+          "<p>Source: Google Maps</p>" +
+		  "</div>" +
+          "</div>";
+        const infowindow4 = new google.maps.InfoWindow({
+          content: contentString4,
+        });
+        const marker4 = new google.maps.Marker({
+          position: ZürichOperaHouse,
+          map,
+          title: "Zürich Opera House",
+		  animation: google.maps.Animation.DROP,
+        });
+        marker4.addListener("click", () => {
+          infowindow4.open(map, marker4);
+        });
+		
+		const MuseumRietberg = { lat: 47.35891498973017, lng: 8.53021932133884 };
+        const contentString5 =
+          '<div id="content">' +
+          '<div id="siteNotice">' +
+          "</div>" +
+          '<h1 id="firstHeading" class="firstHeading">Museum Rietberg</h1>' +
+          '<div id="bodyContent">' +
+          "<p>Non-European artworks displayed within a 19th-century villa & landmark modern extension.</p>" +
+          "<p>Source: Google Maps</p>" +
+		  "</div>" +
+          "</div>";
+        const infowindow5 = new google.maps.InfoWindow({
+          content: contentString5,
+        });
+        const marker5 = new google.maps.Marker({
+          position: MuseumRietberg,
+          map,
+          title: "Museum Rietberg",
+		  animation: google.maps.Animation.DROP,
+        });
+        marker5.addListener("click", () => {
+          infowindow5.open(map, marker5);
+        });
+		 
+		const UniversityofZurich = { lat: 47.37439553581459, lng: 8.551006653975316 };
+        const contentString6 =
+          '<div id="content">' +
+          '<div id="siteNotice">' +
+          "</div>" +
+          '<h1 id="firstHeading" class="firstHeading">University of Zurich</h1>' +
+          '<div id="bodyContent">' +
+          "<p>Scattered university with the world's oldest veterinary school & a noted bioscience department.</p>" +
+          "<p>Source: Google Maps</p>" +
+		  "</div>" +
+          "</div>";
+        const infowindow6 = new google.maps.InfoWindow({
+          content: contentString6,
+        });
+        const marker6 = new google.maps.Marker({
+          position: UniversityofZurich,
+          map,
+          title: "University of Zurich",
+		  animation: google.maps.Animation.DROP,
+        });
+        marker6.addListener("click", () => {
+          infowindow6.open(map, marker6);
+        });
+		// Add a style-selector control to the map.
+        const styleControl = document.getElementById("style-selector-control");
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(styleControl);
+        // Set the map's style to the initial value of the selector.
+        const styleSelector = document.getElementById("style-selector");
+        map.setOptions({ styles: styles[styleSelector.value] });
+        // Apply new JSON when the user selects a different style.
+        styleSelector.addEventListener("change", () => {
+          map.setOptions({ styles: styles[styleSelector.value] });
+        });
+      }
+      const styles = {
+        default: [],
+        silver: [
+          {
+            elementType: "geometry",
+            stylers: [{ color: "#f5f5f5" }],
+          },
+          {
+            elementType: "labels.icon",
+            stylers: [{ visibility: "off" }],
+          },
+          {
+            elementType: "labels.text.fill",
+            stylers: [{ color: "#616161" }],
+          },
+          {
+            elementType: "labels.text.stroke",
+            stylers: [{ color: "#f5f5f5" }],
+          },
+          {
+            featureType: "administrative.land_parcel",
+            elementType: "labels.text.fill",
+            stylers: [{ color: "#bdbdbd" }],
+          },
+          {
+            featureType: "poi",
+            elementType: "geometry",
+            stylers: [{ color: "#eeeeee" }],
+          },
+          {
+            featureType: "poi",
+            elementType: "labels.text.fill",
+            stylers: [{ color: "#757575" }],
+          },
+          {
+            featureType: "poi.park",
+            elementType: "geometry",
+            stylers: [{ color: "#e5e5e5" }],
+          },
+          {
+            featureType: "poi.park",
+            elementType: "labels.text.fill",
+            stylers: [{ color: "#9e9e9e" }],
+          },
+          {
+            featureType: "road",
+            elementType: "geometry",
+            stylers: [{ color: "#ffffff" }],
+          },
+          {
+            featureType: "road.arterial",
+            elementType: "labels.text.fill",
+            stylers: [{ color: "#757575" }],
+          },
+          {
+            featureType: "road.highway",
+            elementType: "geometry",
+            stylers: [{ color: "#dadada" }],
+          },
+          {
+            featureType: "road.highway",
+            elementType: "labels.text.fill",
+            stylers: [{ color: "#616161" }],
+          },
+          {
+            featureType: "road.local",
+            elementType: "labels.text.fill",
+            stylers: [{ color: "#9e9e9e" }],
+          },
+          {
+            featureType: "transit.line",
+            elementType: "geometry",
+            stylers: [{ color: "#e5e5e5" }],
+          },
+          {
+            featureType: "transit.station",
+            elementType: "geometry",
+            stylers: [{ color: "#eeeeee" }],
+          },
+          {
+            featureType: "water",
+            elementType: "geometry",
+            stylers: [{ color: "#c9c9c9" }],
+          },
+          {
+            featureType: "water",
+            elementType: "labels.text.fill",
+            stylers: [{ color: "#9e9e9e" }],
+          },
+        ],
+        night: [
+          { elementType: "geometry", stylers: [{ color: "#242f3e" }] },
+          {
+            elementType: "labels.text.stroke",
+            stylers: [{ color: "#242f3e" }],
+          },
+          { elementType: "labels.text.fill", stylers: [{ color: "#746855" }] },
+          {
+            featureType: "administrative.locality",
+            elementType: "labels.text.fill",
+            stylers: [{ color: "#d59563" }],
+          },
+          {
+            featureType: "poi",
+            elementType: "labels.text.fill",
+            stylers: [{ color: "#d59563" }],
+          },
+          {
+            featureType: "poi.park",
+            elementType: "geometry",
+            stylers: [{ color: "#263c3f" }],
+          },
+          {
+            featureType: "poi.park",
+            elementType: "labels.text.fill",
+            stylers: [{ color: "#6b9a76" }],
+          },
+          {
+            featureType: "road",
+            elementType: "geometry",
+            stylers: [{ color: "#38414e" }],
+          },
+          {
+            featureType: "road",
+            elementType: "geometry.stroke",
+            stylers: [{ color: "#212a37" }],
+          },
+          {
+            featureType: "road",
+            elementType: "labels.text.fill",
+            stylers: [{ color: "#9ca5b3" }],
+          },
+          {
+            featureType: "road.highway",
+            elementType: "geometry",
+            stylers: [{ color: "#746855" }],
+          },
+          {
+            featureType: "road.highway",
+            elementType: "geometry.stroke",
+            stylers: [{ color: "#1f2835" }],
+          },
+          {
+            featureType: "road.highway",
+            elementType: "labels.text.fill",
+            stylers: [{ color: "#f3d19c" }],
+          },
+          {
+            featureType: "transit",
+            elementType: "geometry",
+            stylers: [{ color: "#2f3948" }],
+          },
+          {
+            featureType: "transit.station",
+            elementType: "labels.text.fill",
+            stylers: [{ color: "#d59563" }],
+          },
+          {
+            featureType: "water",
+            elementType: "geometry",
+            stylers: [{ color: "#17263c" }],
+          },
+          {
+            featureType: "water",
+            elementType: "labels.text.fill",
+            stylers: [{ color: "#515c6d" }],
+          },
+          {
+            featureType: "water",
+            elementType: "labels.text.stroke",
+            stylers: [{ color: "#17263c" }],
+          },
+        ],
+        retro: [
+          { elementType: "geometry", stylers: [{ color: "#ebe3cd" }] },
+          { elementType: "labels.text.fill", stylers: [{ color: "#523735" }] },
+          {
+            elementType: "labels.text.stroke",
+            stylers: [{ color: "#f5f1e6" }],
+          },
+          {
+            featureType: "administrative",
+            elementType: "geometry.stroke",
+            stylers: [{ color: "#c9b2a6" }],
+          },
+          {
+            featureType: "administrative.land_parcel",
+            elementType: "geometry.stroke",
+            stylers: [{ color: "#dcd2be" }],
+          },
+          {
+            featureType: "administrative.land_parcel",
+            elementType: "labels.text.fill",
+            stylers: [{ color: "#ae9e90" }],
+          },
+          {
+            featureType: "landscape.natural",
+            elementType: "geometry",
+            stylers: [{ color: "#dfd2ae" }],
+          },
+          {
+            featureType: "poi",
+            elementType: "geometry",
+            stylers: [{ color: "#dfd2ae" }],
+          },
+          {
+            featureType: "poi",
+            elementType: "labels.text.fill",
+            stylers: [{ color: "#93817c" }],
+          },
+          {
+            featureType: "poi.park",
+            elementType: "geometry.fill",
+            stylers: [{ color: "#a5b076" }],
+          },
+          {
+            featureType: "poi.park",
+            elementType: "labels.text.fill",
+            stylers: [{ color: "#447530" }],
+          },
+          {
+            featureType: "road",
+            elementType: "geometry",
+            stylers: [{ color: "#f5f1e6" }],
+          },
+          {
+            featureType: "road.arterial",
+            elementType: "geometry",
+            stylers: [{ color: "#fdfcf8" }],
+          },
+          {
+            featureType: "road.highway",
+            elementType: "geometry",
+            stylers: [{ color: "#f8c967" }],
+          },
+          {
+            featureType: "road.highway",
+            elementType: "geometry.stroke",
+            stylers: [{ color: "#e9bc62" }],
+          },
+          {
+            featureType: "road.highway.controlled_access",
+            elementType: "geometry",
+            stylers: [{ color: "#e98d58" }],
+          },
+          {
+            featureType: "road.highway.controlled_access",
+            elementType: "geometry.stroke",
+            stylers: [{ color: "#db8555" }],
+          },
+          {
+            featureType: "road.local",
+            elementType: "labels.text.fill",
+            stylers: [{ color: "#806b63" }],
+          },
+          {
+            featureType: "transit.line",
+            elementType: "geometry",
+            stylers: [{ color: "#dfd2ae" }],
+          },
+          {
+            featureType: "transit.line",
+            elementType: "labels.text.fill",
+            stylers: [{ color: "#8f7d77" }],
+          },
+          {
+            featureType: "transit.line",
+            elementType: "labels.text.stroke",
+            stylers: [{ color: "#ebe3cd" }],
+          },
+          {
+            featureType: "transit.station",
+            elementType: "geometry",
+            stylers: [{ color: "#dfd2ae" }],
+          },
+          {
+            featureType: "water",
+            elementType: "geometry.fill",
+            stylers: [{ color: "#b9d3c2" }],
+          },
+          {
+            featureType: "water",
+            elementType: "labels.text.fill",
+            stylers: [{ color: "#92998d" }],
+          },
+        ],
+        hiding: [
+          {
+            featureType: "poi.business",
+            stylers: [{ visibility: "off" }],
+          },
+          {
+            featureType: "transit",
+            elementType: "labels.icon",
+            stylers: [{ visibility: "off" }],
+          },
+        ],
+		
+		// the Swiss style is one I made by editing certain features of the silver style
+		swiss: [
+          {
+            elementType: "geometry",
+            stylers: [{ color: "#FFFFFF" }],
+          },
+          {
+            elementType: "labels.icon",
+            stylers: [{ visibility: "on" }],
+          },
+          {
+            elementType: "labels.text.fill",
+            stylers: [{ color: "#616161" }],
+          },
+          {
+            elementType: "labels.text.stroke",
+            stylers: [{ color: "#f5f5f5" }],
+          },
+          {
+            featureType: "administrative.land_parcel",
+            elementType: "labels.text.fill",
+            stylers: [{ color: "#bdbdbd" }],
+          },
+          {
+            featureType: "poi",
+            elementType: "geometry",
+            stylers: [{ color: "#eeeeee" }],
+          },
+          {
+            featureType: "poi",
+            elementType: "labels.text.fill",
+            stylers: [{ color: "#757575" }],
+          },
+          {
+            featureType: "poi.park",
+            elementType: "geometry",
+            stylers: [{ color: "1F8910" }],
+          },
+          {
+            featureType: "poi.park",
+            elementType: "labels.text.fill",
+            stylers: [{ color: "#9e9e9e" }],
+          },
+          {
+            featureType: "road",
+            elementType: "geometry",
+            stylers: [{ color: "#7B3F00" }],
+          },
+          {
+            featureType: "road.arterial",
+            elementType: "labels.text.fill",
+            stylers: [{ color: "#757575" }],
+          },
+          {
+            featureType: "road.highway",
+            elementType: "geometry",
+            stylers: [{ color: "3F000F" }],
+          },
+          {
+            featureType: "road.highway",
+            elementType: "labels.text.fill",
+            stylers: [{ color: "#616161" }],
+          },
+          {
+            featureType: "road.local",
+            elementType: "labels.text.fill",
+            stylers: [{ color: "#9e9e9e" }],
+          },
+          {
+            featureType: "transit.line",
+            elementType: "geometry",
+            stylers: [{ color: "#e5e5e5" }],
+          },
+          {
+            featureType: "transit.station",
+            elementType: "geometry",
+            stylers: [{ color: "#eeeeee" }],
+          },
+          {
+            featureType: "water",
+            elementType: "geometry",
+            stylers: [{ color: "#66CCCC" }],
+          },
+          {
+            featureType: "water",
+            elementType: "labels.text.fill",
+            stylers: [{ color: "#9e9e9e" }],
+          },
+        ],
+      };
+    </script>
+  </head>
+  <body>
+	<div id="style-selector-control" class="map-control">
+      <select id="style-selector" class="selector-control">
+        <option value="default">Default</option>
+        <option value="silver">Silver</option>
+        <option value="night">Night mode</option>
+        <option value="retro">Retro</option>
+		<option value="swiss" selected="selected">Swiss</option>
+        <option value="hiding">Hide features</option>
+      </select>
+    </div>
+    <div id="map"></div>
+  </body>
+</html>
